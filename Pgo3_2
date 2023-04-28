@@ -1,0 +1,59 @@
+public class Product {
+    private String name;
+    private double price;
+    private String code;
+    private int quantity;
+
+    public Product(String name, double price, String code) {
+        this.name = name;
+        this.price = price;
+        this.code = code;
+        this.quantity = 0;
+    }
+
+    public Product(String name, double price, String code, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.code = code;
+        this.quantity = quantity;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setQuantity(int quantity) {
+        if (quantity < 0) {
+            System.out.println("Liczba sztuk nie może być mniejsza od 0!");
+        } else {
+            this.quantity = quantity;
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public static void main(String[] args) {
+        Product product1 = new Product("Product 1", 10.99, "ABC123");
+        Product product2 = new Product("Product 2", 25.99, "DEF456", 2);
+
+        product1.setPrice(11.99);
+        product2.setQuantity(5);
+
+        System.out.println(product1.getName() + ", " + product1.getPrice() + ", " + product1.getCode() + ", " + product1.getQuantity());
+        System.out.println(product2.getName() + ", " + product2.getPrice() + ", " + product2.getCode() + ", " + product2.getQuantity());
+    }
+}
