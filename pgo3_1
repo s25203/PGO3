@@ -5,51 +5,40 @@ public class User {
     private String password;
     private boolean isGuest;
 
-    public User(String firstName, String lastName, String email, String password, boolean isGuest) {
+    public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.isGuest = isGuest;
+        this.isGuest = false;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
+    public User(String email) {
+        this.firstName = null;
+        this.lastName = null;
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        this.password = null;
+        this.isGuest = true;
     }
 
     public boolean isGuest() {
         return isGuest;
     }
 
-    public void setGuest(boolean guest) {
-        isGuest = guest;
+    public void upgradeAccount(String firstName, String lastName, String password) {
+        if (isGuest) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.password = password;
+            this.isGuest = false;
+        }
+    }
+
+    public static void main(String[] args) {
+        User guest1 = new User("guest1@example.com");
+        User guest2 = new User("guest2@example.com");
+        User regular = new User("Jan", "Kowalski", "jkowalski@example.com", "password");
+
+        regular.upgradeAccount(guest1.getFirstName(), guest1.getLastName(), "newpassword");
     }
 }
